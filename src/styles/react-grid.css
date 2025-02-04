@@ -1,0 +1,23 @@
+.react-grid{
+    border-collapse:separate;
+    border-spacing: 0;
+}
+.react-grid thead th{
+    background:white;
+    position:sticky;
+    top:0px;
+    padding: 0.5em 1em 0.5em 1em;
+}
+.react-grid thead th{
+    background:white;
+    /* color:black; */
+    font-weight:bold;
+}
+.react-grid tbody tr:hover{
+    background:#c7ebf1;
+    color:#858796;
+}
+.react-grid tbody tr.selected{
+    background:#c7ebf1;
+    color:#858796;
+}

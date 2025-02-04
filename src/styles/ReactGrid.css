@@ -1,0 +1,85 @@
+
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  /* display: block; */
+  padding-right:2em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.table-fixed tbody {
+  overflow-y: auto;
+  overflow-x:hidden;
+  width: 100%;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+  /* float: left; */
+  position: relative;
+  /* display:inline-block; */
+  white-space:pre;
+  vertical-align: top;
+  
+}::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.table-fixed tbody td::after,
+.table-fixed tbody th::after,
+.table-fixed thead > tr > th::after{
+  content: '';
+  clear: both;
+  display: block;
+}
+.column-drag{
+  background:rgba(0,0,0,0.2);
+  position: absolute;
+  right:0px;
+  top:0px;
+  bottom:0px;
+  width:2px;
+  cursor:ew-resize;
+}
+
+.table-fixed thead > tr > th {
+  /* float: left; */
+  position: sticky;
+  top:0px;
+  background:white;
+  z-index:999;
+  border:0;
+  box-shadow: inset 1px 1px 1px silver, inset -1px -1px 0 silver;
+}
+
+.table-fixed tbody tr.expand{
+  display:none
+}
+.table-fixed tbody tr.expand.expand-show{
+  display:table-row;
+  background-color:#F2F2F2;
+}
+
+.table-fixed tbody > tr.alt {
+  background:silver;
+}
+
+.sort-button{
+  /* background:rgba(0,0,0,0.2); */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position: absolute;
+  right:0px;
+  top:0px;
+  bottom:0px;
+  cursor:pointer;
+}
