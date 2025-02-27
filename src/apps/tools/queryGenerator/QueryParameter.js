@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Form, Col} from 'react-bootstrap';
-import 'react-data-grid/dist/react-data-grid.css'
 
 
 class QueryParamter extends Component {

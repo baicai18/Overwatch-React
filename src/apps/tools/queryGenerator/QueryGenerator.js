@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Card, Button, Form} from 'react-bootstrap';
-import 'react-data-grid/dist/react-data-grid.css'
 import QueryParameter from './QueryParameter';
 
 class QueryGenerator extends Component {

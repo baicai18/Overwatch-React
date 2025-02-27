@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Button, Spinner, Table, Badge} from 'react-bootstrap';
 import SortButton from './SortButton';
-import 'react-data-grid/dist/react-data-grid.css';
-import '../../../styles/ReactGrid.css';
 import XLSX from 'xlsx';
 
 class ReactGrid extends Component {
