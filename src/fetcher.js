@@ -8,6 +8,9 @@ function updateOptions(options) {
         },
         ...options 
     };
+    if(process.env.REACT_APP_IGNORE_CERTIFICATE === 'true'){
+        update.rejectUnauthorized = false;
+    }
     if (localStorage.jwt) {
         update.headers = {
         ...update.headers,
@@ -18,6 +21,9 @@ function updateOptions(options) {
             ...update.headers,
             };
     }
+
+    console.log(JSON.stringify(update, null, 2));
+
     return update;
 }
 var fetcher = function fetcher(url, options) {

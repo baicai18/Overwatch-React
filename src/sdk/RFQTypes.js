@@ -4,7 +4,7 @@ var RFQTypes = {
     getRFQType: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/rfqTypes/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfqTypes/' + _id);
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -25,7 +25,7 @@ var RFQTypes = {
     getRFQTypes: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/rfqTypes');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfqTypes');
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -46,7 +46,7 @@ var RFQTypes = {
     saveRFQType: (rfqType)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/rfqTypes', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfqTypes', {
                     method: 'POST',
                     body: JSON.stringify(rfqType),
                 })
@@ -63,7 +63,7 @@ var RFQTypes = {
     deleteRFQType: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/rfqTypes/' + _id,
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfqTypes/' + _id,
                 {method:'DELETE'}
                 );
                 if(response.ok){

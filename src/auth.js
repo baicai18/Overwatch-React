@@ -27,7 +27,7 @@ Auth.prototype.login = async function(username, password){
             username:username,
             password:password,
         }
-        let url = process.env.REACT_APP_APISERVER + '/api/users/login'
+        let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/login'
         try{
             var response = await fetcher(url, {
                 method:'POST',
@@ -58,6 +58,7 @@ Auth.prototype.login = async function(username, password){
                 resolve(false);
             }
         }catch(err){
+            console.error(err);
             throw(err);
         }
     })
@@ -67,7 +68,7 @@ Auth.prototype.authenticate = function(userData, cb, errcb) {
     this.isAuthenticated = true;
     var me = this;
     localStorage.setItem('isAuthenticated', this.isAuthenticated);
-    fetch(process.env.REACT_APP_APISERVER + '/api/users/login', {
+    fetch((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/login', {
         method: 'POST',
         body: JSON.stringify(userData),
         credentials: 'include',
@@ -107,7 +108,7 @@ Auth.prototype.signout = function(cb) {
     this.isAuthenticated = false;
     localStorage.removeItem('jwt');
     localStorage.removeItem('isAuthenticated');
-    fetch(process.env.REACT_APP_APISERVER + '/api/users/logout', {
+    fetch((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/logout', {
         method: 'POST',
         credentials: 'include',
         headers: {'Content-Type': 'application/json'},
@@ -127,7 +128,7 @@ Auth.prototype.signout = function(cb) {
 Auth.prototype.getAccountInfo = async function(){
     return new Promise(async (resolve, reject)=>{
         if(localStorage.jwt){
-            let url = process.env.REACT_APP_APISERVER + '/api/users/accountInfo'
+            let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/accountInfo'
             try{
                 var response = await fetcher(url, {
                     method:'GET',

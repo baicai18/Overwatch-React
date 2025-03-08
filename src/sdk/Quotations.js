@@ -3,7 +3,7 @@ var Quotations = {
     getQuotation: (quotationNumber) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/' + quotationNumber);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/' + quotationNumber);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -17,7 +17,7 @@ var Quotations = {
     updateQuotationInfo: (quotationNumber, quationInfo) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/' + quotationNumber, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/' + quotationNumber, {
                     method: 'PATCH',
                     body:JSON.stringify(quationInfo),
                 });
@@ -34,7 +34,7 @@ var Quotations = {
     getQuotationOptions: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/options');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/options');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -48,7 +48,7 @@ var Quotations = {
     getQuotationForm: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/options/form');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/options/form');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -63,7 +63,7 @@ var Quotations = {
     saveQuotationOptions: (form) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/options', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/options', {
                     method: 'POST',
                     body:JSON.stringify(form),
                 });
@@ -80,7 +80,7 @@ var Quotations = {
     saveQuotationOptionsForm: (form) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/options/form', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/options/form', {
                     method: 'POST',
                     body:JSON.stringify(form),
                 });
@@ -97,7 +97,7 @@ var Quotations = {
     submitQuotation:(rfq_number, quotationNumber, data, formData)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/rfq/' + rfq_number + '/quotation', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfq/' + rfq_number + '/quotation', {
                     method: 'post',
                     body:JSON.stringify({
                         quotationNumber:quotationNumber,
@@ -119,7 +119,7 @@ var Quotations = {
     pushBackQuotation: (quotation_number, keepData)=>{
         return new Promise(async (resolve, reject)=> {
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/quotations/' + quotation_number + '/pushback' + (keepData != null?'?keepData=' + keepData.toString():''), {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/' + quotation_number + '/pushback' + (keepData != null?'?keepData=' + keepData.toString():''), {
                     method: 'POST',
                 });
                 

@@ -89,11 +89,15 @@ class App extends Component{
   render(){
     switch(this.state.gotSetup){
       case -1:
+        
+      {console.log("-1")}
         return <Suspense fallback={<div>Loading...</div>}><ErrorPage/></Suspense>
       case 0:
         return null
+        {console.log("null")}
       case 1:
         if(this.state.initialSetup){
+          {console.log("ABC")}
           if(!Auth.checkedAuthentication){
             return '';
           }
@@ -333,6 +337,7 @@ class App extends Component{
             </Router>
           )
         }else{
+          {console.log("BCD")}
           return (
             <Router>
               <Suspense fallback={<div>Loading...</div>}>
@@ -356,6 +361,7 @@ class App extends Component{
           )
         }
       default:
+        {console.log("FAIL")}
         return <Suspense fallback={<div>Loading...</div>}><ErrorPage/></Suspense>
     }
   }

@@ -5,7 +5,7 @@ var Organizations = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = process.env.REACT_APP_APISERVER + '/api/organizations'
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations'
                 let query = searchParams?Object.keys(searchParams)
                                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(searchParams[k]))
                                 .join('&'):''
@@ -25,7 +25,7 @@ var Organizations = {
     getOrganizationInfo: (organization_name)=>{
         return new Promise(async(resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -39,7 +39,7 @@ var Organizations = {
     getUser: email=>{
         return new Promise(async(resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/users/' + email);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/users/' + email);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -54,7 +54,7 @@ var Organizations = {
     getOrganizationUsers: organization_name=>{
         return new Promise(async(resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/organization/' + organization_name + '/users');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/users');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -67,7 +67,7 @@ var Organizations = {
     },
     saveNewOrganization: (organization_name)=>{
         return new Promise(async (resolve, reject)=>{
-            let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name, {
+            let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name, {
                 method: 'POST'
             })
             if(response.ok){
@@ -80,7 +80,7 @@ var Organizations = {
     updateOrganization: (organization_name, orgInfo)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name, {
                     method: 'PATCH',
                     body: JSON.stringify(orgInfo),
                 });
@@ -97,7 +97,7 @@ var Organizations = {
     },
     saveUser: (organization_name, userInfo)=>{
         return new Promise(async (resolve, reject)=>{
-            let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users', {
+            let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users', {
                 method: 'POST',
                 body: JSON.stringify(userInfo),
             })
@@ -111,7 +111,7 @@ var Organizations = {
     saveRole: (organization_name, roleInfo)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/userRoles', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles', {
                     method: 'POST',
                     body: JSON.stringify(roleInfo),
                 })
@@ -129,7 +129,7 @@ var Organizations = {
     resendVerification: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email + '/resendVerification', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email + '/resendVerification', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -146,7 +146,7 @@ var Organizations = {
     deleteUser: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email, {
                     method: 'DELETE',
                 });
                 if(response.ok){
@@ -164,7 +164,7 @@ var Organizations = {
     inactivateUser: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email + '/inactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email + '/inactivate', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -181,7 +181,7 @@ var Organizations = {
     reactivateUser: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email + '/reactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email + '/reactivate', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -200,7 +200,7 @@ var Organizations = {
     lockUser: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email + '/lock', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email + '/lock', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -217,7 +217,7 @@ var Organizations = {
     unlockUser: (organization_name, email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email + '/unlock', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email + '/unlock', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -234,7 +234,7 @@ var Organizations = {
     updateUser: (organization_name, email, userInfo)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/users/' + email, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/users/' + email, {
                     method: 'POST',
                     body: JSON.stringify(userInfo),
                 });
@@ -252,7 +252,7 @@ var Organizations = {
     getOrganizationProjects:(organization_name)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/organization/' + organization_name + '/projects');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/projects');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -266,7 +266,7 @@ var Organizations = {
     getAddresses: organization_name =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/organization/' + organization_name + '/addresses')
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/addresses')
                 if(response.ok){
                     resolve(await(response.json()));
                 }else{
@@ -281,7 +281,7 @@ var Organizations = {
     getAddress: (organization_name, label) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/organization/' + organization_name + '/addresses/' + label);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/addresses/' + label);
                 if(response.ok){
                     resolve(await(response.json()));
                 }else{
@@ -295,7 +295,7 @@ var Organizations = {
     saveAddress: (organization_name, addressInfo)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/addresses', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/addresses', {
                     method: 'POST',
                     body: JSON.stringify(addressInfo),
                 })
@@ -314,7 +314,7 @@ var Organizations = {
     updateAddress: (organization_name, label, addressInfo)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_name + '/addresses/' + label, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/addresses/' + label, {
                     method: 'POST',
                     body: JSON.stringify(addressInfo),
                 });
@@ -333,7 +333,7 @@ var Organizations = {
     getCustomers: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/customers');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/customers');
                 if(response.ok){
                     resolve(await(response.json()));
                 }else{
@@ -347,7 +347,7 @@ var Organizations = {
     deactivateOrganization:(organization_id)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_id + '/deactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_id + '/deactivate', {
                     method: 'PATCH',
                 })
                 
@@ -364,7 +364,7 @@ var Organizations = {
     reactivateOrganization:(organization_id)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_id + '/reactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_id + '/reactivate', {
                     method: 'PATCH',
                 })
                 
@@ -382,7 +382,7 @@ var Organizations = {
     checkDeleteOrganization: (organization_id) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_id + '/delete');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_id + '/delete');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -396,7 +396,7 @@ var Organizations = {
     deleteOrganization: (organization_id)=>{
         return new Promise(async(resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/organizations/' + organization_id, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_id, {
                     method: 'DELETE',
                 });
                 if(response.ok){

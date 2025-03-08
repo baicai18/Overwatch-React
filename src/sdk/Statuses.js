@@ -4,7 +4,7 @@ var Statuses = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = process.env.REACT_APP_APISERVER + '/api/statuses'
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses'
                 let query = searchParams?Object.keys(searchParams)
                                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(searchParams[k]))
                                 .join('&'):''
@@ -25,7 +25,7 @@ var Statuses = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = process.env.REACT_APP_APISERVER + '/api/statuses/statusTypes'
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses/statusTypes'
                 let query = searchParams?Object.keys(searchParams)
                                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(searchParams[k]))
                                 .join('&'):''
@@ -45,7 +45,7 @@ var Statuses = {
     saveStatus: (status)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses', {
                     method: 'POST',
                     body: JSON.stringify(status),
                 })
@@ -62,7 +62,7 @@ var Statuses = {
     updateStatus: (status)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses', {
                     method: 'PATCH',
                     body: JSON.stringify(status),
                 })
@@ -79,7 +79,7 @@ var Statuses = {
     getStatus: (process_type, status_code)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses/' + process_type + '/' + status_code)
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses/' + process_type + '/' + status_code)
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -93,7 +93,7 @@ var Statuses = {
     deleteStatus: (process_type, status_code)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses/' + process_type + '/' + status_code,{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses/' + process_type + '/' + status_code,{
                     method: 'DELETE'
                 })
                 if(response.ok){
@@ -109,7 +109,7 @@ var Statuses = {
     inactivateStatus: (process_type, status_code)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses/' + process_type + '/' + status_code + '/inactivate',{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses/' + process_type + '/' + status_code + '/inactivate',{
                     method: 'PATCH'
                 })
                 if(response.ok){
@@ -125,7 +125,7 @@ var Statuses = {
     reactivateStatus: (process_type, status_code)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/statuses/' + process_type + '/' + status_code + '/reactivate',{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/statuses/' + process_type + '/' + status_code + '/reactivate',{
                     method: 'PATCH'
                 })
                 if(response.ok){

@@ -3,7 +3,7 @@ var InitialSetup = {
     resetServer: ()=> {
         return new Promise(async (resolve, reject) =>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/initialSetup/resetAllSettings', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/initialSetup/resetAllSettings', {
                     method: 'POST'
                 })
                 if(response.ok){
@@ -20,7 +20,7 @@ var InitialSetup = {
     submitSetup: (data)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/initialSetup/', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/initialSetup/', {
                     method: 'POST',
                     body: JSON.stringify(data)
                 });

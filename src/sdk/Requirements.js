@@ -3,7 +3,7 @@ var Requirements = {
     getRequirementTypes: ()=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/requirements/types');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/requirements/types');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -18,7 +18,7 @@ var Requirements = {
     getRequirements: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/requirements')
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/requirements')
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -34,7 +34,7 @@ var Requirements = {
     getRequirement: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/requirements/' + _id)
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/requirements/' + _id)
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -50,7 +50,7 @@ var Requirements = {
     saveRequirement: (requirement)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/requirements', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/requirements', {
                     method: 'POST',
                     body:JSON.stringify(requirement),
                 })
@@ -69,7 +69,7 @@ var Requirements = {
     deleteRequirement: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/requirements/' + _id,{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/requirements/' + _id,{
                     method:'DELETE'
                 })
                 if(response.ok){

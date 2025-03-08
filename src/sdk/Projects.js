@@ -4,7 +4,7 @@ var Projects = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = process.env.REACT_APP_APISERVER + '/api/projects'
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects'
                 let query = searchParams?Object.keys(searchParams)
                                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(searchParams[k]))
                                 .join('&'):''
@@ -24,7 +24,7 @@ var Projects = {
     getProjects: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -39,7 +39,7 @@ var Projects = {
     getProject: (_id) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + _id);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -53,7 +53,7 @@ var Projects = {
     checkDeleteProject: (_id) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + _id + '/delete');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + _id + '/delete');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -67,7 +67,7 @@ var Projects = {
     deleteProject: (_id) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + _id,{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + _id,{
                     method:'DELETE'
                 });
                 if(response.ok){
@@ -83,7 +83,7 @@ var Projects = {
     newRevision: (project_id, revisionData)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/revision', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/revision', {
                     method: 'POST',
                     body:JSON.stringify(revisionData),
                 })
@@ -101,7 +101,7 @@ var Projects = {
     saveNewProject: (newProject, organization)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects', {
                     method: 'POST',
                     body:JSON.stringify(newProject),
                 });
@@ -125,7 +125,7 @@ var Projects = {
                     deliverable_id:deliverable_id,
                     bomData:bomData
                 }
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/bom', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/bom', {
                     method: 'POST',
                     body:JSON.stringify(sendData, function (key, value) {
                         if (key === "parentNode") {
@@ -153,7 +153,7 @@ var Projects = {
                     deliverable_id:deliverable_id,
                     formData:formData
                 }
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/form', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/form', {
                     method: 'POST',
                     body:JSON.stringify(sendData),
                 })
@@ -176,7 +176,7 @@ var Projects = {
                 formData.append('file', file)
                 formData.append('requirement_id', requirement_id)
                 formData.append('deliverable_id', deliverable_id)
-                let response = await fetcher.file(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/file', {
+                let response = await fetcher.file((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id + '/deliverable/file', {
                     method: 'POST',
                     body: formData
                 })
@@ -195,7 +195,7 @@ var Projects = {
         return new Promise(async (resolve, reject)=>{
             try{
                 
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/revision/' + revision_id + '/deliverable/' + deliverable_id + '/file/' + file, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/revision/' + revision_id + '/deliverable/' + deliverable_id + '/file/' + file, {
                     method: 'delete',
                 })
                 
@@ -212,7 +212,7 @@ var Projects = {
     requestQuotation:(project_id, revision_id, product_type, order_type, data, formData)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id + '/quotation', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id + '/quotation', {
                     method: 'post',
                     body:JSON.stringify({
                         product_type:product_type,
@@ -235,7 +235,7 @@ var Projects = {
     getProjectQuotations: (project_id, revision_id) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id  + '/' + revision_id + '/quotation')
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id  + '/' + revision_id + '/quotation')
                 
                 if(response.ok){
                     resolve(await response.json());
@@ -249,7 +249,7 @@ var Projects = {
     },updateItemnumber:(project_id, data)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/itemnumber', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/itemnumber', {
                     method: 'PATCH',
                     body:JSON.stringify(data)
                 })
@@ -267,7 +267,7 @@ var Projects = {
     updateRevisionNumber:(project_id, revision_id, data)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id + '/number', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id + '/number', {
                     method: 'PATCH',
                     body:JSON.stringify(data)
                 })
@@ -285,7 +285,7 @@ var Projects = {
     updateRevisionInfo:(project_id, revision_id, data)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/' + revision_id, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/' + revision_id, {
                     method: 'PATCH',
                     body:JSON.stringify(data)
                 })
@@ -303,7 +303,7 @@ var Projects = {
     deactivateProject:(project_id)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/deactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/deactivate', {
                     method: 'PATCH',
                 })
                 
@@ -320,7 +320,7 @@ var Projects = {
     reactivateProject:(project_id)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/reactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/reactivate', {
                     method: 'PATCH',
                 })
                 
@@ -337,7 +337,7 @@ var Projects = {
     updateOrganization:(project_id, organization_name)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/organization/' + organization_name, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/organization/' + organization_name, {
                     method: 'PATCH',
                     // body:JSON.stringify(data)
                 })
@@ -355,7 +355,7 @@ var Projects = {
     updateProductType:(project_id, product_id)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher(process.env.REACT_APP_APISERVER + '/api/projects/' + project_id + '/productType/' + product_id, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/productType/' + product_id, {
                     method: 'PATCH',
                     // body:JSON.stringify(data)
                 })
