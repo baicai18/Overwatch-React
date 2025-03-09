@@ -77,13 +77,6 @@ class LoginPage extends Component{
                                                         <button type="button" onClick={this.tryLogin} className="btn btn-primary btn-user btn-block">
                                                         Login
                                                         </button>
-                                                        <hr/>
-                                                        <a href="/" className="btn btn-google btn-user btn-block">
-                                                            <i className="fab fa-google fa-fw"></i> Login with Google
-                                                        </a>
-                                                        <a href="/" className="btn btn-facebook btn-user btn-block">
-                                                            <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                                        </a>
                                                     </form>
                                                     <hr/>
                                                     <div className="text-center">

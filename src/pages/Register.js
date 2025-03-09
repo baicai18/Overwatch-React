@@ -228,9 +228,6 @@ class Register extends React.Component{
                                             </Form.Group>
                                         </Form.Row>
                                         <Button type="submit" className="btn-block">Register Account</Button>
-                                        <hr/>
-                                        <Button type="submit" className="btn-google btn-block">Register with Google</Button>
-                                        <Button type="submit" className="btn-facebook e btn-block">Register with Facebook</Button>
 
                                     </Form>
                                     <hr/>
