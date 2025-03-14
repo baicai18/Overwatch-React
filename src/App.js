@@ -97,7 +97,6 @@ class App extends Component{
         {console.log("null")}
       case 1:
         if(this.state.initialSetup){
-          {console.log("ABC")}
           if(!Auth.checkedAuthentication){
             return '';
           }
@@ -337,7 +336,6 @@ class App extends Component{
             </Router>
           )
         }else{
-          {console.log("BCD")}
           return (
             <Router>
               <Suspense fallback={<div>Loading...</div>}>

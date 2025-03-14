@@ -4,7 +4,7 @@ var ProductTypes = {
     getProductType: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes/' + _id);
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -25,7 +25,7 @@ var ProductTypes = {
     getProductTypes: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes');
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -46,7 +46,7 @@ var ProductTypes = {
     saveProductType: (productType)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes', {
                     method: 'POST',
                     body: JSON.stringify(productType),
                 })
@@ -63,7 +63,7 @@ var ProductTypes = {
     deleteProductType: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes/' + _id,
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/productTypes/' + _id,
                 {method:'DELETE'}
                 );
                 if(response.ok){

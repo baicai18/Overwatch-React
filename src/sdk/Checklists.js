@@ -3,7 +3,7 @@ var Forms = {
     saveChecklistComments: (checklist) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklist._id + '/comments',{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklist._id + '/comments',{
                     method:'POST',
                     body:JSON.stringify(checklist)
                 });
@@ -20,7 +20,7 @@ var Forms = {
     saveChecklistItem: (checklistItem) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklistItem.checklistId + '/items',{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklistItem.checklistId + '/items',{
                     method:'POST',
                     body:JSON.stringify(checklistItem)
                 });
@@ -90,7 +90,7 @@ var Forms = {
     getChecklistDesign: (_id) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/design/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/design/' + _id);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -104,7 +104,7 @@ var Forms = {
     getChecklist: (_id) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + _id);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -119,7 +119,7 @@ var Forms = {
     undoChecklistItem: (checklistItem) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklistItem.checklistId + '/items/' + checklistItem._id,{
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/checklists/' + checklistItem.checklistId + '/items/' + checklistItem._id,{
                     method:'DELETE',
                     // body:JSON.stringify(checklistItem)
                 });

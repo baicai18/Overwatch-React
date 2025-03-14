@@ -56,7 +56,7 @@ var Forms = {
     getFormDesign: (_id) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/forms/design/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/forms/design/' + _id);
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -70,7 +70,7 @@ var Forms = {
     getForm: (_id) =>{
         return new Promise(async function(resolve, reject){
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/forms/' + _id);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/forms/' + _id);
                 if(response.ok){
                     resolve(await response.json());
                 }else{

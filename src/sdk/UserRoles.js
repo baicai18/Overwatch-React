@@ -4,7 +4,7 @@ var UserRoles = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles'
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles'
                 let query = searchParams?Object.keys(searchParams)
                                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(searchParams[k]))
                                 .join('&'):''
@@ -25,7 +25,7 @@ var UserRoles = {
         return new Promise(async (resolve, reject)=>{
             try{
 
-                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + _id
+                let url = (process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + _id
                 let response = await fetcher(url);
                 if(response.ok){
                     resolve(await response.json());
@@ -42,7 +42,7 @@ var UserRoles = {
         return new Promise(async (resolve, reject)=>{
             try{
                 alert("TRYING SAVE");
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/userRoles', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/organization/' + organization_name + '/userRoles', {
                     method: 'POST',
                     body: JSON.stringify(roleInfo),
                 })
@@ -59,7 +59,7 @@ var UserRoles = {
     addPermission: (_id, permission)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + _id + '/permissions/add/' + permission, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + _id + '/permissions/add/' + permission, {
                     method: 'POST',
                 })
                 if(response.ok){
@@ -75,7 +75,7 @@ var UserRoles = {
     removePermission: (email, permission)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + email + '/permissions/remove/' + permission, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/userRoles/' + email + '/permissions/remove/' + permission, {
                     method: 'POST',
                 });
                 
@@ -92,7 +92,7 @@ var UserRoles = {
     deleteRole: (organization_name, role_code)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code, {
                     method: 'DELETE',
                 });
                 if(response.ok){
@@ -110,7 +110,7 @@ var UserRoles = {
     inactivateRole: (organization_name, role_code)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code + '/inactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code + '/inactivate', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -127,7 +127,7 @@ var UserRoles = {
     reactivateRole: (organization_name, role_code)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code + '/reactivate', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/organizations/' + organization_name + '/userRoles/' + role_code + '/reactivate', {
                     method: 'POST',
                 });
                 if(response.ok){

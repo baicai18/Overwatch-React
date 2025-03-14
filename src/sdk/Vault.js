@@ -3,7 +3,7 @@ var Vault = {
     getFile: (file)=> {
         return new Promise(async(resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/vault/' + file);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/vault/' + file);
                 if(response.ok){
                     console.log(response.headers);
                     let blob = await response.blob();

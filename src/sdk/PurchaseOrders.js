@@ -3,7 +3,7 @@ var PurchaseOrders = {
     getPurchaseOrder: (purchaseOrderNumber) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber);
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber);
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -21,7 +21,7 @@ var PurchaseOrders = {
     updatePurchaseOrderInfo: (purchaseOrderInfo) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderInfo.purchaseOrderNumber, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderInfo.purchaseOrderNumber, {
                     method: 'PATCH',
                     body:JSON.stringify(purchaseOrderInfo),
                 });
@@ -42,7 +42,7 @@ var PurchaseOrders = {
     getPurchaseOrderOptions: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options');
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -60,7 +60,7 @@ var PurchaseOrders = {
     getPurchaseOrderForm: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/form');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/form');
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -78,7 +78,7 @@ var PurchaseOrders = {
     savePurchaseOrderOptionsForm: (form) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/form', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/form', {
                     method: 'POST',
                     body:JSON.stringify(form),
                 });
@@ -99,7 +99,7 @@ var PurchaseOrders = {
     getPurchaseOrderChecklist: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/checklist');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/checklist');
                 if(response.ok){
                     try{
                         let data = await response.json();
@@ -119,7 +119,7 @@ var PurchaseOrders = {
     savePurchaseOrderOptionsChecklist: (checklist) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/checklist', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/checklist', {
                     method: 'POST',
                     body:JSON.stringify(checklist),
                 });
@@ -141,7 +141,7 @@ var PurchaseOrders = {
     getPurchaseOrderNotifications: () =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/notifications');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/notifications');
                 if(response.ok){
                     try{
                         resolve(await response.json());
@@ -159,7 +159,7 @@ var PurchaseOrders = {
     savePurchaseOrderOptionsNotifications: (notifications) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/notifications', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/options/notifications', {
                     method: 'POST',
                     body:JSON.stringify(notifications),
                 });
@@ -189,7 +189,7 @@ var PurchaseOrders = {
                 //     }
                 // }
                 
-                let response = await fetcher.file((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/' + quotationNumber + '/purchaseOrder', {
+                let response = await fetcher.file((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/quotations/' + quotationNumber + '/purchaseOrder', {
                     method: 'post',
                     body:fileForm
                 });
@@ -213,7 +213,7 @@ var PurchaseOrders = {
             try{
                 const formData = new FormData()
                 formData.append('file', file)
-                let response = await fetcher.file((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/file', {
+                let response = await fetcher.file((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/file', {
                     method: 'POST',
                     body: formData
                 })
@@ -231,7 +231,7 @@ var PurchaseOrders = {
     approvePurchaseOrder: (purchaseOrderNumber) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/approve', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/approve', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -251,7 +251,7 @@ var PurchaseOrders = {
     generateChecklistID: (purchaseOrderNumber) =>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/checklistID', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/checklistID', {
                     method: 'POST',
                 });
                 if(response.ok){
@@ -271,7 +271,7 @@ var PurchaseOrders = {
     pushBackPurchaseOrder: (purchaseOrderNumber, keepData)=>{
         return new Promise(async (resolve, reject)=> {
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/pushback' + (keepData != null?'?keepData=' + keepData.toString():''), {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/pushback' + (keepData != null?'?keepData=' + keepData.toString():''), {
                     method: 'POST',
                 });
                 
@@ -289,7 +289,7 @@ var PurchaseOrders = {
         return new Promise(async (resolve, reject)=>{
             try{
                 
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/file/' + file, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/purchaseOrders/' + purchaseOrderNumber + '/file/' + file, {
                     method: 'delete',
                 })
                 

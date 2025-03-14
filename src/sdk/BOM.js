@@ -5,7 +5,7 @@ var BOM = {
     getBOMDefinition: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/definition/active');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/definition/active');
                 if(response.ok){
                     resolve(await response.json())
                 }else{
@@ -20,7 +20,7 @@ var BOM = {
     getFieldTypes: ()=> {
         return new Promise(async (resolve, reject) =>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/fieldTypes');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/fieldTypes');
                 if(response.ok){
                     resolve(await response.json())
                 }else{
@@ -35,7 +35,7 @@ var BOM = {
     getDefaultBOMOutput: ()=> {
         return new Promise(async (resolve, reject) =>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/output/default');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/output/default');
                 if(response.ok){
                     resolve(await response.json())
                 }else{
@@ -50,7 +50,7 @@ var BOM = {
     getParser: (parserName)=> {
         return new Promise(async (resolve, reject) =>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser/' + (parserName?parserName:''));
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser/' + (parserName?parserName:''));
                 if(response.ok){
                     resolve(await response.json())
                 }else{
@@ -64,7 +64,7 @@ var BOM = {
     deleteParser: (parserName)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser/' + parserName, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser/' + parserName, {
                     method: 'DELETE'
                 })
                 if(response.ok){
@@ -80,7 +80,7 @@ var BOM = {
     getParsers: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parsers', )
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parsers', )
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -94,7 +94,7 @@ var BOM = {
     saveParser: parserOptions=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/parser', {
                     method: 'POST',
                     body: JSON.stringify(parserOptions)
                 });
@@ -111,7 +111,7 @@ var BOM = {
     saveDefinition: bomDefinition=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/definition', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/definition', {
                     method: 'POST',
                     body: JSON.stringify(bomDefinition)
                 });
@@ -128,7 +128,7 @@ var BOM = {
     saveOutput: bomOutput=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/output', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/boms/output', {
                     method: 'POST',
                     body: JSON.stringify(bomOutput),
                 });

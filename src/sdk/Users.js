@@ -3,13 +3,15 @@ var Users = {
     getMyInfo: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/me');
+                console.log((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/me')
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/me');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
                     reject(await response.text());
                 }
             }catch(err){
+                console.error(err);
                 reject(err.message||err);
             }
         });
@@ -18,7 +20,7 @@ var Users = {
     findPMs: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/pms');
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/pms');
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -33,7 +35,7 @@ var Users = {
     markNotificationsRead: ids => {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/notifications/read', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/notifications/read', {
                     method: 'POST',
                     body: JSON.stringify(ids),
                 });
@@ -50,7 +52,7 @@ var Users = {
     addPermission: (email, permission)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/permissions/add/' + permission, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/permissions/add/' + permission, {
                     method: 'POST',
                 })
                 if(response.ok){
@@ -66,7 +68,7 @@ var Users = {
     removePermission: (email, permission)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/permissions/remove/' + permission, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/permissions/remove/' + permission, {
                     method: 'POST',
                 });
                 
@@ -83,7 +85,7 @@ var Users = {
     addRole: (email, role)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/roles/add/' + role, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/roles/add/' + role, {
                     method: 'POST',
                 })
                 if(response.ok){
@@ -99,7 +101,7 @@ var Users = {
     removeRole: (email, role)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/roles/remove/' + role, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/' + email + '/roles/remove/' + role, {
                     method: 'POST',
                 });
                 
@@ -116,7 +118,7 @@ var Users = {
     getAPIKeys: ()=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKeys')
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKeys')
                 if(response.ok){
                     resolve(await response.json());
                 }else{
@@ -131,7 +133,7 @@ var Users = {
     generateAPIKey: (description)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey', {
                     method: 'POST',
                     body:JSON.stringify({
                         description:description
@@ -151,7 +153,7 @@ var Users = {
     enableAPIKey: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id + '/enable', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id + '/enable', {
                     method: 'PATCH'
                 });
                 if(response.ok){
@@ -168,7 +170,7 @@ var Users = {
     disableAPIKey: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id + '/disable', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id + '/disable', {
                     method: 'PATCH'
                 });
                 if(response.ok){
@@ -185,7 +187,7 @@ var Users = {
     deleteAPIKey: (_id)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/apiKey/' + _id, {
                     method: 'DELETE'
                 });
                 if(response.ok){
@@ -202,7 +204,7 @@ var Users = {
     forgotPassword: (email)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/forgotPassword', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/forgotPassword', {
                     method: 'POST',
                     body:JSON.stringify({email:email}),
                 });
@@ -222,7 +224,7 @@ var Users = {
     changePassword: (passwordData)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/changePassword', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/changePassword', {
                     method: 'POST',
                     body:JSON.stringify(passwordData),
                 });
@@ -240,7 +242,7 @@ var Users = {
     verifyEmail: (confirmation)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/verifyEmail', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/verifyEmail', {
                     method: 'POST',
                     body:JSON.stringify({confirmation:confirmation}),
                 });
@@ -258,7 +260,7 @@ var Users = {
     verifyEmailPassword: (confirmation, password, password2)=> {
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?(window.location.origin+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/verifyEmail', {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/users/verifyEmail', {
                     method: 'POST',
                     body:JSON.stringify({confirmation:confirmation,password:password,password2:password2}),
                 });
