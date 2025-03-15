@@ -15,7 +15,7 @@ var Vault = {
                     a.click();    
                     a.remove();  //afterwards we remove the element again        
                     // window.location.href = response.url;
-                    // resolve(true);
+                    // resolve(true);                                                                  
                 }else{
                     reject(await response.text());
                 }
