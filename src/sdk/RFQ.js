@@ -205,11 +205,12 @@ var RFQ = {
             }
         });
     },
-    archiveRFQ: (rfq_number)=>{
+    archiveRFQ: (rfq_number, reason, notes)=>{
         return new Promise(async (resolve, reject)=> {
             try{
                 let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/rfq/' + rfq_number + '/archive', {
                     method: 'POST',
+                    body:JSON.stringify({reason:reason, notes:notes})
                 });
                 
                 if(response.ok){

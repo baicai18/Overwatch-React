@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import SDK from '../../sdk/SDK';
 import FormDesigner from '../tools/formDesigner/FormDesigner';
 import StatusAdmin from './StatusAdmin';
+import LookupAdmin from './LookupAdmin';
 import RFQTypes from './RFQTypes';
 import { Card, Button, Tabs, Tab } from 'react-bootstrap';
 
@@ -97,6 +98,14 @@ class RFQOptions extends React.Component{
                             <Card>
                                 <Card.Body>
                                     <RFQTypes/>
+
+                                </Card.Body>
+                            </Card>                            
+                        </Tab>
+                        <Tab eventKey="archive" title="Archive Reasons">
+                            <Card>
+                                <Card.Body>
+                                    <LookupAdmin processType={'Archive Reasons'}/>
 
                                 </Card.Body>
                             </Card>                            

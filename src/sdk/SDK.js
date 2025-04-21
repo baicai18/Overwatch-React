@@ -3,6 +3,7 @@ import Checklists from './Checklists';
 import Emailer from './Emailer';
 import Forms from './Forms';
 import InitialSetup from './InitialSetup';
+import Lookups from './Lookups';
 import Options from './Options';
 import Organizations from './Organizations';
 import Permissions from './Permissions';
@@ -26,6 +27,7 @@ var SDK = {
     Emailer: Emailer,
     Forms:Forms,
     InitialSetup: InitialSetup,
+    Lookups: Lookups,
     Options: Options,
     Organizations: Organizations,
     Permissions: Permissions,

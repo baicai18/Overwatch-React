@@ -356,7 +356,15 @@ class RFQInfo extends React.Component{
                             <label htmlFor="multple">Quotation #</label>
                             <InputGroup>
                                 {/* <Form.Control size="sm"  type="text" value={this.state.rfqInfo.quotationNumber} readOnly={true}/> */}
-                                <a href={'/quotation/' + this.state.rfqInfo.quotationNumber}>{this.state.rfqInfo.quotationNumber}</a>
+                                {/* <a href={'/quotation/' + this.state.rfqInfo.quotationNumber}>{this.state.rfqInfo.quotationNumber}</a> */}
+                                {
+                                    this.state.rfqInfo.quotations.map((row, index)=>{
+                                        return <div>
+                                            {index > 0?', ':''}
+                                            <a href={'/quotation/' + row.quotationNumber}>{row.quotationNumber}</a>
+                                        </div>
+                                    })
+                                }
                             </InputGroup>
                         </Form.Group>
                         :''

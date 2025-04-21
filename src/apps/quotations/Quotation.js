@@ -62,8 +62,18 @@ class Quotation extends React.Component{
         })
     }
 
-    saveChanges=()=>{
-        this.quotationInfo.current.trySave();
+    saveChanges=async ()=>{
+        
+        await this.quotationInfo.current.trySave();
+        
+        if(this.state.quotationNumber !== this.quotationInfo.current.state.quotationInfo.quotationNumber){
+            this.setState({
+                editing:false
+            },()=>{
+                window.location.href = window.location.href.replace(this.state.quotationNumber, this.quotationInfo.current.state.quotationInfo.quotationNumber)
+            })
+        
+        }
     }
 
     
@@ -79,6 +89,8 @@ class Quotation extends React.Component{
         this.setState({
             modified:value
         })
+
+        
     }
     render = ()=>{
         return (

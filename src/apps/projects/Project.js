@@ -43,6 +43,33 @@ class Projects extends React.Component{
             }, sortValue:({value})=>{
                 return value?value.split('@')[0]:''
             }},
+            { key: "quotation_date", name: "Submitted Date", resizable: true, formatter:({value,row})=>{
+                if(row.quotation_date){
+                    return row.quotation_date?moment(row.quotation_date).local().format('MM/DD/YYYY hh:mma'):''
+                }else{
+                    return '';
+                }
+                // return moment(value).local().format('MM/DD/YYYY hh:mma')
+            }, exportFormatter:({value,row})=>{
+                if(row.quotation_date){
+                    return row.quotation_date?new Date(row.quotation_date):null;
+                }else{
+                    return '';
+                }
+            },formatIfEmpty:true},
+            {key:"quotation_user",name:'Submitted By', formatter:({value, row})=>{
+                if(row.quotation_user){
+                    return row.quotation_user?row.quotation_user.split('@')[0]:''
+                }else{
+                    return '';
+                }
+            }, exportFormatter:({value,row})=>{
+                if(row.quotationInfo){
+                    return row.quotation_user?row.quotation_user.split('@')[0]:''
+                }else{
+                    return '';
+                }
+            },formatIfEmpty:true},
             {key:"PM",name:'PM', formatter:({value, row})=>{
                 return row.data?row.data.pm:''
             }, exportFormatter:({value, row})=>{
@@ -167,73 +194,73 @@ class Projects extends React.Component{
                 }
                 // return row.quotationInfo&&row.quotationInfo.purchaseOrderNumber?'PO Submitted':row.quotationNumber?'Quotation Submitted':'Requested';
             }},
-            { key: "lastUpdate_date", name: "Modified Date", resizable: true, formatter:({value, row})=>{
-                let maxDate = row.lastUpdate_date;
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                }
-                return maxDate?moment(maxDate).local().format('MM/DD/YYYY hh:mma'):null
-                // return moment(value).local().format('MM/DD/YYYY hh:mma')
-            }, exportFormatter:({value, row})=>{
-                let maxDate = row.lastUpdate_date;
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                }
-                console.log(row.rfq_number + ' 3  ' + maxDate)
-                return (maxDate?new Date(maxDate):null);
-            }, sortValue:({value, row})=>{
-                let maxDate = row.lastUpdate_date;
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                }
-                return moment(maxDate).local().format('MM/DD/YYYY hh:mma')
-            }, formatIfEmpty:true},
-            {key:"lastUpdate_by",name:'Modified By', formatter:({value,row})=>{
-                let maxDate = row.lastUpdate_date;
-                let maxUser = row.lastUpdate_by
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.lastUpdate_by
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
-                }
-                return maxUser?maxUser.split('@')[0]:''
-            }, exportFormatter:({value, row})=>{
-                let maxDate = row.lastUpdate_date;
-                let maxUser = row.lastUpdate_by
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.lastUpdate_by
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
-                }
-                return maxUser?maxUser.split('@')[0]:''
-            }, sortValue:({value, row})=>{
-                let maxDate = row.lastUpdate_date;
-                let maxUser = row.lastUpdate_by
-                if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.lastUpdate_by
-                }
-                if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
-                    maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
-                    maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
-                }
-                return maxUser?maxUser.split('@')[0]:''
-            },formatIfEmpty:true},
+            // { key: "lastUpdate_date", name: "Modified Date", resizable: true, formatter:({value, row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //     }
+            //     return maxDate?moment(maxDate).local().format('MM/DD/YYYY hh:mma'):null
+            //     // return moment(value).local().format('MM/DD/YYYY hh:mma')
+            // }, exportFormatter:({value, row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //     }
+            //     console.log(row.rfq_number + ' 3  ' + maxDate)
+            //     return (maxDate?new Date(maxDate):null);
+            // }, sortValue:({value, row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //     }
+            //     return moment(maxDate).local().format('MM/DD/YYYY hh:mma')
+            // }, formatIfEmpty:true},
+            // {key:"lastUpdate_by",name:'Modified By', formatter:({value,row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     let maxUser = row.lastUpdate_by
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.lastUpdate_by
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
+            //     }
+            //     return maxUser?maxUser.split('@')[0]:''
+            // }, exportFormatter:({value, row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     let maxUser = row.lastUpdate_by
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.lastUpdate_by
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
+            //     }
+            //     return maxUser?maxUser.split('@')[0]:''
+            // }, sortValue:({value, row})=>{
+            //     let maxDate = row.lastUpdate_date;
+            //     let maxUser = row.lastUpdate_by
+            //     if(row.quotationInfo && (row.quotationInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.lastUpdate_by
+            //     }
+            //     if(row.quotationInfo && row.quotationInfo.purchaseOrderInfo && (row.quotationInfo.purchaseOrderInfo.lastUpdate_date > maxDate || maxDate == null)){
+            //         maxDate = row.quotationInfo.purchaseOrderInfo.lastUpdate_date
+            //         maxUser = row.quotationInfo.purchaseOrderInfo.lastUpdate_by
+            //     }
+            //     return maxUser?maxUser.split('@')[0]:''
+            // },formatIfEmpty:true},
         ]
     }
 

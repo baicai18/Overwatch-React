@@ -134,10 +134,10 @@ class QuotationInfo extends React.Component{
             quotationInfo.formData = this.formData.current.getFormData();
             let data = await SDK.Quotations.updateQuotationInfo(this.state.quotationNumber,quotationInfo);
             this.formData.current.commitData();
+            alert("Saved");
             if(this.props.onSaved){
                 this.props.onSaved();
             }
-            alert("Saved");
         }catch(err){
             alert("error:" + err);
         }
