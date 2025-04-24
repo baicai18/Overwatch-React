@@ -148,7 +148,7 @@ class Projects extends React.Component{
             },
             {key:"Qty",name:'Qty',formatter:({value, row})=>{
                 return Array.isArray(row.data.quantity)?
-                row.data.quantity.map((item)=>{return item.quantity}).join(','):
+                row.data.quantity.map((item)=>{return item?item.quantity:''}).join(','):
                 row.data.quantity
             }, formatIfEmpty:true,
             sortValue:({value,row})=>{
@@ -156,7 +156,7 @@ class Projects extends React.Component{
             }},
             {key:"LeadTime",name:'Lead Time',formatter:({value, row})=>{
                 return Array.isArray(row.data.quantity)?
-                row.data.quantity.map((item)=>{return item.leadTime}).join(','):
+                row.data.quantity.map((item)=>{return item?item.leadTime:''}).join(','):
                 null
             }, formatIfEmpty:true,
             sortValue:({value,row})=>{
