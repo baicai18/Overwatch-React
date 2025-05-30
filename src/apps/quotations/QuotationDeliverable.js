@@ -33,19 +33,19 @@ class QuotationDeliverable extends React.Component{
             })
 
         }
-        if(props.project !== this.props.project && this.props.projecty !== {}){
+        if(props.project !== this.props.project && Object.keys(this.props.project).length > 0){
             this.setState({
                 project:this.props.project
             })
 
         }
-        if(props.revision !== this.props.revision && this.props.revision !== {}){
+        if(props.revision !== this.props.revision && Object.keys(this.props.revision).length > 0){
             this.setState({
                 revision:this.props.revision
             })
 
         }
-        if(props.requirement !== this.props.requirement && this.props.requirement !== {}){
+        if(props.requirement !== this.props.requirement && Object.keys(this.props.requirement).length > 0){
             this.setState({
                 requirement:this.props.requirement
             })

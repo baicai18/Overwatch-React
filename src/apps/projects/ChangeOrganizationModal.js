@@ -52,6 +52,9 @@ class ChangeOrganizationModal extends React.Component {
                             }
                         </Form.Control>
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Check name="overwriteRFQ" onChange={this.controlChanged} checked={this.state.overwriteRFQ} label="Overwrite RFQ"></Form.Check>
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     {/* <Button variant="secondary" size="sm" onClick={this.closeModal}>
@@ -84,7 +87,7 @@ class ChangeOrganizationModal extends React.Component {
         // let formData = this.deliverableForm.current.getFormData()
         //alert(JSON.stringify(data));
         try{
-            let data = await SDK.Projects.updateOrganization(this.state.project_id, this.state.organization);
+            let data = await SDK.Projects.updateOrganization(this.state.project_id, this.state.organization, this.state.overwriteRFQ);
             if(this.props.onSubmit){
                 this.props.onSubmit(data);
             }

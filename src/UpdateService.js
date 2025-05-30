@@ -60,7 +60,7 @@ UpdateService.NameSpaceNode.prototype.handleEvent = function(event, message){
 }
  
 UpdateService.prototype.initialize = function(){
-    this.socket = io(process.env.REACT_APP_APISERVER,{
+    this.socket = io((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER),{
         query:{
             Authorization: `Bearer ${localStorage.jwt}`
         }
@@ -85,7 +85,7 @@ UpdateService.prototype.newSocket = function(namespace){
     //return io(window.location.origin + '/' + namespace);
     if(this.namespaces[namespace]){
     }else{
-        this.namespaces[namespace] = new UpdateService.NameSpaceNode(io(process.env.REACT_APP_APISERVER + '/' + namespace,{
+        this.namespaces[namespace] = new UpdateService.NameSpaceNode(io((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/' + namespace,{
             query:{
                 Authorization: `Bearer ${localStorage.jwt}`
             }

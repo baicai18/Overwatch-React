@@ -334,10 +334,10 @@ var Projects = {
             }
         })
     },
-    updateOrganization:(project_id, organization_name)=>{
+    updateOrganization:(project_id, organization_name, overwriteRFQ)=>{
         return new Promise(async (resolve, reject)=>{
             try{
-                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/organization/' + organization_name, {
+                let response = await fetcher((process.env.REACT_APP_USE_RELATIVE==="true"?((window.location.protocol + "//" + window.location.hostname)+process.env.REACT_APP_API_SERVER):process.env.REACT_APP_API_SERVER) + '/api/projects/' + project_id + '/organization/' + organization_name + (overwriteRFQ === true? '/recursive':''), {
                     method: 'PATCH',
                     // body:JSON.stringify(data)
                 })
