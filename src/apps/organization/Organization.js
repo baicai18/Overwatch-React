@@ -17,7 +17,7 @@ class Organization extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            organization_name: props.match.params.organization_name,
+            organization_name: decodeURIComponent(props.match.params.organization_name),
             editOrgName:false,
             organization:{},
             users:[],
